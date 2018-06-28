@@ -1,0 +1,11 @@
+.btn {
+    max-height: 5vh;
+    max-width: 5vw;
+    color: rgba(255,255,255,.7);
+}
+
+.btn:focus {
+    outline:none;
+    color: rgba(255,255,255,.99);
+
+}

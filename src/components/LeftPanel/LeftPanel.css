@@ -1,0 +1,122 @@
+.left-panel {
+    min-width: 20vw;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.left-panel__btn--topLeft {
+    color:red;
+    padding: 12px 0 0 1vh;
+}
+
+
+.menu-hidden {
+    visibility: hidden;
+}
+
+.menu-show {
+    visibility: visible;
+}
+
+.links-menu {
+    position:relative;
+    top:2vh;
+    left: 1vh;
+
+    width:150px;
+    max-height:50%;
+    overflow-y: auto;
+    
+ 
+    background: #0b0b0cc4;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+
+
+.link {
+    text-decoration: none;
+    font-size: 10px;
+    color: rgba(255,255,255,.7);
+    margin-top: 0px;
+}
+
+
+
+.link-container {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:2px 10px 2px 10px;
+    color: rgba(255,255,255,.7);
+}
+
+.link-container_left {
+    display: flex;
+    align-items: center;
+    
+}
+
+.link-container_left a{
+    padding-left: 3px;
+}
+
+.link-container_left:hover, .link-container_left:hover a {
+    cursor: pointer;
+    color: rgba(255,255,255,.99);
+}
+
+.hidden-icon {
+    opacity: 0;
+    color: rgba(255,255,255,.7);
+}
+
+.hidden-icon:hover {
+    color: rgba(255,255,255,.99);
+}
+
+
+/* make x icon visible allowing button to clear link */
+.link-container:hover > .hidden-icon {
+    opacity: 1;
+    cursor: pointer;
+    
+}
+
+
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+
+.links-menu_input {
+    background:transparent;
+    border:none;
+    width:100%;
+    padding:2px 10px 2px 10px;
+    color: rgba(255,255,255,.7)
+
+}
+
+.links-menu_input:focus {
+    outline:none;
+}
+
+
+
+
+
+
+
