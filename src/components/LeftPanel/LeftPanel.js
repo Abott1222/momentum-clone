@@ -36,7 +36,9 @@ class LinksMenu extends React.Component {
         if(e.key==='Enter' && this.state.urlVal.length>=1 && this.state.nameVal.length>=1) {
             alert("we good!");
             this.props.addLink(this.state.nameVal, this.state.urlVal);
+            this.props.changeInputVisability();
             this.setState({urlVal:'',nameVal:''});
+            
             
         }
     }
@@ -106,6 +108,7 @@ class LeftPanel extends React.Component {
         }
         this.handleLinksClick = this.handleLinksClick.bind(this);
         this.handleInputClick = this.handleInputClick.bind(this);
+        this.handleAddLinkVisability = this.handleAddLinkVisability.bind(this);
     }
 
     handleLinksClick(e) {
@@ -126,6 +129,15 @@ class LeftPanel extends React.Component {
         }
     }
 
+    handleAddLinkVisability() {
+        this.setState((prevState) => {
+            return {
+                inputClicked: !prevState.inputClicked
+            }
+        })
+    }
+
+
     render() {
         //{alert("hello")}
         //{alert(`hello: ${typeof this.state.addLink}`)}
@@ -143,6 +155,7 @@ class LeftPanel extends React.Component {
                         handleInputClick={this.handleInputClick}
                         addLink={this.props.addLink}
                         removeLink={this.props.removeLink}
+                        changeInputVisability={this.handleAddLinkVisability}
                         /> :
                         <LinksMenu className="menu-hidden" links={this.props.links}/>
                     }

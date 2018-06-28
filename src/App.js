@@ -64,7 +64,7 @@ class App extends Component {
     this.setState((prevState) => {
       return {
         links: prevState.links.filter( (elem, i) => {
-          return i != ix;
+          return i !== ix;
         })
       }
     })
