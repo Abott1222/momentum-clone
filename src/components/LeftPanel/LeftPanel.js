@@ -52,7 +52,7 @@ class LinksMenu extends React.Component {
                     {this.props.links.map( (link, ix) => {
                         return (
                             <li key={link.id}>
-                                <Link added={true} faClass="chevron-circle-right" link={link} />
+                                <Link added={true} faClass="chevron-circle-right" link={link} removeLink={this.props.removeLink}/>
                             </li>
                         );
                     })}
@@ -76,7 +76,7 @@ class LinksMenu extends React.Component {
 
 
 
-const Link = ({link, faClass, added}) => {
+const Link = ({link, faClass, added, removeLink}) => {
     //make draggable
     return (
         <div className="link-container" >
@@ -85,7 +85,7 @@ const Link = ({link, faClass, added}) => {
                 <a target="_blank" className='link' href={link.url}> {link.name} </a>
             </div>
             {
-                added ? <FontAwesome className="hidden-icon"  name='times' /> : null
+                added ? <FontAwesome className="hidden-icon"  name='times' onClick={() => removeLink(link.id)}/> : null
             }
         </div>
     )
@@ -142,6 +142,7 @@ class LeftPanel extends React.Component {
                         className="menu-show" inputClicked={this.state.inputClicked} links={this.props.links}
                         handleInputClick={this.handleInputClick}
                         addLink={this.props.addLink}
+                        removeLink={this.props.removeLink}
                         /> :
                         <LinksMenu className="menu-hidden" links={this.props.links}/>
                     }

@@ -41,8 +41,10 @@ class App extends Component {
       ]
     }
     this.addLink = this.addLink.bind(this);
+    this.removeLink = this.removeLink.bind(this);
   }
   //will update in LandingPage but LinksMenu wont update?
+  //was putting props into state and thus the child's state didnt update -> no render
   addLink(name, url) {
     //alert(`Got it... name:${name}... url:${url}`);
     let newObj = {id:this.state.numLinks, name:name, url:url};
@@ -52,8 +54,20 @@ class App extends Component {
         links: [...prevState.links, newObj],
       }
     })
-    
-    
+  }
+
+  removeLink(id) {
+    alert(`Got it... ix:${id}`);
+    let ix = this.state.links.findIndex((elem) => {
+      return elem.id === id;
+    })
+    this.setState((prevState) => {
+      return {
+        links: prevState.links.filter( (elem, i) => {
+          return i != ix;
+        })
+      }
+    })
   }
 
   componentDidMount() {
@@ -68,7 +82,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.backgroundImageUrl.length > 2 ? <LandingPage addLink={this.addLink} links={this.state.links} backgroundImage={this.state.backgroundImageUrl}/> : <span> Loading ... </span>}
+        {this.state.backgroundImageUrl.length > 2 ? <LandingPage addLink={this.addLink} removeLink={this.removeLink} links={this.state.links} backgroundImage={this.state.backgroundImageUrl}/> : <span> Loading ... </span>}
       </div>
     );
   }
@@ -87,7 +101,7 @@ const LandingPage = (props) => {
 
   return (
     <div className="landing-page" style={LandingPageStyle}>
-      <LeftPanel links={props.links} addLink={props.addLink}/>
+      <LeftPanel links={props.links} addLink={props.addLink} removeLink={props.removeLink}/>
       <MiddlePanel />
       <RightPanel />
     </div>
