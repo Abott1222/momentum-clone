@@ -1,0 +1,18 @@
+.middle-panel__container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    color: rgba(255,255,255,.99);
+}
+
+.middle-panel__container--input {
+    width: 100%;
+    background:transparent;
+    border:none;
+    border-bottom: 2px solid rgba(255,255,255,.99);;
+}
+
+.middle-panel__container--input:focus {
+    outline: none;
+}

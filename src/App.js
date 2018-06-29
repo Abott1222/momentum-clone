@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       name: '',
       backgroundImageUrl: '',
+      nameEntered: false,
       numLinks: 5,
       links: [
         {
@@ -42,6 +43,8 @@ class App extends Component {
     }
     this.addLink = this.addLink.bind(this);
     this.removeLink = this.removeLink.bind(this);
+    this.handleNameInput = this.handleNameInput.bind(this);
+    this.handleNameEnter = this.handleNameEnter.bind(this);
   }
   //will update in LandingPage but LinksMenu wont update?
   //was putting props into state and thus the child's state didnt update -> no render
@@ -70,6 +73,20 @@ class App extends Component {
     })
   }
 
+  handleNameInput(e) {
+    this.setState({name:e.target.value});
+  }
+
+  handleNameEnter(e) {
+    if(e.key === "Enter" && this.state.name.length > 0) {
+      this.setState((prevState) => {
+        return {
+          nameEntered: !prevState.nameEntered
+        }
+      })
+    }
+  }
+
   componentDidMount() {
     let url = 'https://pixabay.com/api/?key=9385886-d89ec14d25ef4a913e3bbe0cf&q=inspiration&image_type=photo&min_width=600&min_height=600&colors=blue,grey'
     fetch(url)
@@ -82,11 +99,40 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.backgroundImageUrl.length > 2 ? <LandingPage addLink={this.addLink} removeLink={this.removeLink} links={this.state.links} backgroundImage={this.state.backgroundImageUrl}/> : <span> Loading ... </span>}
+        {this.state.backgroundImageUrl.length > 2 ? !this.state.nameEntered ? <FirstGreeting backgroundImage={this.state.backgroundImageUrl} name={this.state.name} handleNameInput={this.handleNameInput} handleNameEnter={this.handleNameEnter}/> :
+           <LandingPage name={this.state.name} addLink={this.addLink} removeLink={this.removeLink} links={this.state.links} backgroundImage={this.state.backgroundImageUrl}/> 
+           : <span> Loading ... </span>}
       </div>
     );
   }
 }
+
+
+
+
+
+const FirstGreeting = (props) => {
+  let FirstGreetingPageStyle = {
+    background: `url(${props.backgroundImage}) no-repeat`,
+    backgroundSize: '100% 100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  };
+
+  return (
+    <div className="app_initial-greeting" style={FirstGreetingPageStyle}>
+      <div className='app_initial-gretting-wrapper' onKeyUp={props.handleNameEnter}>
+        <h1> Hello, what's your name? </h1>
+        <input className="app_initial-greeting--input" onChange={props.handleNameInput} value={props.name} />
+      </div>
+    </div>
+  );
+}
+
+
+
 
 
 const LandingPage = (props) => {
@@ -100,9 +146,10 @@ const LandingPage = (props) => {
 
 
   return (
+    
     <div className="landing-page" style={LandingPageStyle}>
       <LeftPanel links={props.links} addLink={props.addLink} removeLink={props.removeLink}/>
-      <MiddlePanel />
+      <MiddlePanel name={props.name}/>
       <RightPanel />
     </div>
   );

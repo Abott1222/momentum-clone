@@ -15,6 +15,36 @@
 
   background-size: 100% 100%;
   color: #aec3c71a
+}
 
+.app_initial-greeting {
+  
+  color: rgba(255,255,255,.99);
+  height:100%;
+  width:100%;
+  text-align: center;
+}
+
+.app_initial-greeting h1 {
+  letter-spacing: .5px;
+  font-size: 250%;
+}
+
+.app_initial-greeting--input {
+  width: 100%;
+  background:transparent;
+  border:none;
+  border-bottom: 3px solid rgba(255,255,255,.99);
+  color: rgba(255,255,255,.99);
+  padding-top: 3vh;
+  font-weight: 700;
+  font-size: 300%;
+  text-align: center;
+  
+  
+}
+
+.app_initial-greeting--input:focus {
+  outline: none;
 }
 

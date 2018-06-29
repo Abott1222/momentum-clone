@@ -6,11 +6,11 @@
 }
 
 .left-panel__link-btn--topLeft {
-    padding: 12px 0 0 1vh;
+    padding: 12px 0 0 2vh;
 }
 
 .left-panel__btn--bottomLeft {
-    padding: 0 0 12px 1vh;
+    padding: 0 0 12px 2vh;
     color: rgba(255,255,255,.7);
 }
 
@@ -29,7 +29,7 @@
 
 .left-panel__search-wrapper {
     padding: 12px 0 0 0;
-    margin-left: 1.8vh;
+    margin-left: 2.5vh;
 }
 
 .left-panel__search-input {
@@ -55,7 +55,7 @@
 .links-menu {
     position:relative;
     top:2vh;
-    left: 1vh;
+    left: 2vh;
 
     width:150px;
     max-height:50%;

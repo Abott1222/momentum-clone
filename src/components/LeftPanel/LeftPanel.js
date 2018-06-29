@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './LeftPanel.css'
+import './LeftPanel.css';
 import Button from '../Misc/Button';
 var FontAwesome = require('react-fontawesome');
 
