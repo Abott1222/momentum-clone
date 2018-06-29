@@ -38,8 +38,10 @@ class LinksMenu extends React.Component {
             this.props.addLink(this.state.nameVal, this.state.urlVal);
             this.props.changeInputVisability();
             this.setState({urlVal:'',nameVal:''});
-            
-            
+        } else {
+            if(this.state.urlVal.length<1) {
+
+            }
         }
     }
 
@@ -103,12 +105,15 @@ class LeftPanel extends React.Component {
             //links: links,
             menuVisibile: false,
             inputClicked:false,
+            searchVal: '',
             //addLink: addLink,
             
         }
         this.handleLinksClick = this.handleLinksClick.bind(this);
         this.handleInputClick = this.handleInputClick.bind(this);
         this.handleAddLinkVisability = this.handleAddLinkVisability.bind(this);
+        this.handleSearchInput = this.handleSearchInput.bind(this);
+        this.handleSearchEnter = this.handleSearchEnter.bind(this);
     }
 
     handleLinksClick(e) {
@@ -137,6 +142,26 @@ class LeftPanel extends React.Component {
         })
     }
 
+    handleSearchInput(e) {
+        this.setState({searchVal: e.target.value});
+        
+    }
+
+    handleSearchEnter({key}) {
+        let search = 'https://www.google.com/?q=';
+        if(key === "Enter" && this.state.searchVal.length > 4) {
+            let val = this.state.searchVal.split()
+            search = search + this.state.searchVal;
+            this.setState({searchVal: ''});
+            this.openInNewTab(search);
+        }
+    }
+
+    openInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
+
 
     render() {
         //{alert("hello")}
@@ -144,10 +169,16 @@ class LeftPanel extends React.Component {
         
         return (
             <div className="left-panel">
-              <div>
-                  <Button 
-                  text="Links" className="left-panel__btn--topLeft"
-                  onClick={this.handleLinksClick}/>
+                <div>
+                    <div className="left-panel__button-container">
+                        <Button 
+                        text="Links" className="left-panel__link-btn--topLeft"
+                        onClick={this.handleLinksClick}/>
+                        <div className='left-panel__search-wrapper' onKeyDown={this.handleSearchEnter}>
+                            <FontAwesome className='left-panel__search-btn' name='search' />
+                            <input className="left-panel__search-input" value={this.state.searchVal} onChange={this.handleSearchInput}/>
+                        </div>
+                    </div>
                     {
                       this.state.menuVisibile ? 
                         <LinksMenu 
@@ -159,9 +190,10 @@ class LeftPanel extends React.Component {
                         /> :
                         <LinksMenu className="menu-hidden" links={this.props.links}/>
                     }
-              </div>
-              
-              <Button text="Settings" className="left-panel__btn--bottomLeft"/>
+                </div>
+                <div className="left-panel_settings_wrapper">
+                    <FontAwesome name='cog'  className="left-panel__btn--bottomLeft"/>
+                </div>
             </div>
         );
     }
