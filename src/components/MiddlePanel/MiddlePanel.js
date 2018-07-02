@@ -16,9 +16,27 @@ class MiddlePanel extends React.Component {
       timeHour: null,
       timeMinute: null,
       timeSecond: null,
+      focus: '',
+      focusEntered: false,
     }
     this.handleNameInput = this.handleNameInput.bind(this);
     this.updateTime = this.updateTime.bind(this);
+    this.handleFocusChange = this.handleFocusChange.bind(this);
+    this.handleFocusEntered = this.handleFocusEntered.bind(this);
+  }
+
+  handleFocusChange(e) {
+    this.setState({focus:e.target.value});
+  }
+
+  handleFocusEntered(e) {
+    if(e.key === "Enter") {
+      this.setState((prevState) => {
+        return {
+          focusEntered: !prevState.focusEntered,
+        }
+      })
+    }
   }
 
   updateTime() {
@@ -70,6 +88,13 @@ class MiddlePanel extends React.Component {
     return (
       <div className="middle-panel__container">
         <Greeting name={this.props.name} hour={timeHour} minute={timeMinute}/>
+        <Focus 
+          handleFocusChange={this.handleFocusChange} 
+          focus={this.state.focus}
+          focusEntered={this.state.focusEntered}
+          handleFocusEntered={this.handleFocusEntered}
+        />
+        <Quote className="quote"/>
       </div>
     );
   }
@@ -101,19 +126,55 @@ class Greeting extends React.Component {
       hour >= 12 ? "Afternoon":
         "Morning";
       let amOrPM = hour > 12 ? 'PM' : 'AM';
+
+      //convert 1:1 to 1:10
+      let m = minute < 10 ? "0" + minute : minute;
     return (
       <div className='greeting'>
-        <div className='time'>
           {
             this.state.militaryTime ? 
-              <h1 onClick={this.handleSwitchTime}> {hour}:{minute} </h1> :
-                <h1 onClick={this.handleSwitchTime}> {hour % 12}:{minute} <span id="amOrPM">{amOrPM}</span> </h1>
+              <h1 className="greeting-time" onClick={this.handleSwitchTime}> {hour}:{m} </h1> :
+                <h1 className="greeting-time" onClick={this.handleSwitchTime}> {hour % 12}:{m} <span id="amOrPM">{amOrPM}</span> </h1>
           }
-          <h2> Good {timeOfDay}, {this.props.name}. </h2>
-        </div>
+          <h3 className="greeting-name" > Good {timeOfDay}, {this.props.name}. </h3>
       </div>
     );
   }
+}
+
+const Focus = (props) => {
+  return (
+    <div className="focus" onKeyUp={props.handleFocusEntered}>
+      {
+        !props.focusEntered ?
+          <div>
+            <h4 className="focus__title"> What is your main focus for today? </h4>
+            <input onChange={props.handleFocusChange} value={props.focus} className="focus__input" /> 
+          </div> :
+            <div>
+              <h5 className="focus__day"> TODAY </h5>
+              <div className="focus__content">
+                {
+                  props.completed ? 
+                    <FontAwesome className="hidden-box" name="check-square" /> :
+                      <FontAwesome className="hidden-box" name="square" />
+
+                }
+                <h4 className="focus__content-text"> {props.focus} </h4>
+                <FontAwesome className="hidden-x"  name='times' onClick={() => alert("clicked!")}/>
+              </div>
+            </div>
+      }
+    </div>
+  );
+}
+
+const Quote = () => {
+  return (
+    <div className="quote">
+      <p> Stay hungry, stay foolish </p>
+    </div>
+  );
 }
 
 

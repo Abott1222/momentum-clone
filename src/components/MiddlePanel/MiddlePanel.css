@@ -1,8 +1,8 @@
 .middle-panel__container {
     display:flex;
     flex-direction: column;
-    justify-content: center;
-    align-self: center;
+    justify-content: flex-end;
+   
     color: rgba(255,255,255,.99);
 }
 
@@ -15,4 +15,74 @@
 
 .middle-panel__container--input:focus {
     outline: none;
+}
+
+.greeting {
+    text-align: center;
+    margin-bottom:15vh;
+}
+
+.greeting-time {
+    font-size: 900%;
+    font-weight: 500;
+}
+
+.greeting-name {
+    font-size:300%;
+    font-weight: 520;
+}
+
+.focus {
+    text-align:center;
+    margin-bottom: 15vh;
+    font-size:150%;
+}
+
+.focus__title {
+    font-weight: 100;
+    font-size:140%;
+}
+
+.focus__input {
+    padding-top: 1vh;
+    background:transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    width:100%;
+    color:white;
+    text-align: center;
+    font-size: 180%;
+    font-weight: 600;
+
+}
+
+.focus__input:focus {
+    outline:none;
+}
+
+.focus__content {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 10px;
+}
+.quote {
+    text-align: center;
+    padding-bottom: 12px;
+}
+
+.hidden-x {
+    opacity:0;
+    transition: opacity 1s ease-in;
+    padding-left:4px;
+}
+
+.hidden-box {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    padding-right:4px;
+}
+
+.focus__content:hover .hidden-x, .focus__content:hover .hidden-box {
+    opacity: 1;
 }

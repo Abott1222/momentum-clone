@@ -88,7 +88,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let url = 'https://pixabay.com/api/?key=9385886-d89ec14d25ef4a913e3bbe0cf&q=inspiration&image_type=photo&min_width=600&min_height=600&colors=blue,grey'
+    let url = 'https://pixabay.com/api/?key=9385886-d89ec14d25ef4a913e3bbe0cf&q=inspiration&image_type=photo&min_width=600&min_height=600&colors=brown'
     fetch(url)
       .then(result => result.json())
       .then(data => {
