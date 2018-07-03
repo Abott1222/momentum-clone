@@ -9,7 +9,6 @@ class MiddlePanel extends React.Component {
     super(props);
     this.state = {
       name: '',
-      mainFocus: '',
       nameEntered: false,
       timer: null,
       dateObj: new Date(),
@@ -18,13 +17,38 @@ class MiddlePanel extends React.Component {
       timeSecond: null,
       focus: '',
       focusEntered: false,
+      focusCompleted: false,
+      quote: '',
+      quoteAuthor: '',
+      quoteEntered: false,
     }
     this.handleNameInput = this.handleNameInput.bind(this);
     this.updateTime = this.updateTime.bind(this);
     this.handleFocusChange = this.handleFocusChange.bind(this);
     this.handleFocusEntered = this.handleFocusEntered.bind(this);
+    this.changeFocusCompletion = this.changeFocusCompletion.bind(this);
+    this.handleCancelFocus = this.handleCancelFocus.bind(this);
   }
 
+  changeFocusCompletion() {
+    this.setState( (prevState) => {
+      return {
+        focusCompleted: !prevState.focusCompleted
+      }
+    })
+  }
+
+  handleCancelFocus() {
+    this.setState((prevState) => {
+      return {
+        focusEntered: !prevState.focusEntered,
+        focus: '',
+        focusCompleted: false,
+      }
+    })
+  }
+
+ 
   handleFocusChange(e) {
     this.setState({focus:e.target.value});
   }
@@ -39,9 +63,9 @@ class MiddlePanel extends React.Component {
     }
   }
 
-  updateTime() {
+  updateTime(time) {
     let {timeHour, timeMinute, timeSecond} = this.state;
-    timeSecond++;
+    timeSecond = timeSecond + time;
     if(timeSecond > 59) {
       timeSecond = 0;
       timeMinute++
@@ -65,13 +89,25 @@ class MiddlePanel extends React.Component {
 
   //ComponentWillMount use now considered bad practice
   componentDidMount() {
+    
     const {dateObj} = this.state;
-    this.setState({
-      dateObj: new Date(),
-      timeHour:  dateObj.getHours(),
-      timeMinute: dateObj.getMinutes(),
-      timeSecond: dateObj.getSeconds(),
-      timer: setInterval(this.updateTime, 1000),
+    let quoteUrl = 'https://quote-api.glitch.me/pull/1';
+    
+    fetch(quoteUrl, {mode: 'cors'})
+    .then(result => result.json())
+    .then(data => {
+        let resp = data[0];
+        
+        this.setState({
+          quote: resp.body,
+          quoteAuthor: resp.author,
+          quoteEntered: true,
+          dateObj: new Date(),
+          timeHour:  dateObj.getHours(),
+          timeMinute: dateObj.getMinutes(),
+          timeSecond: dateObj.getSeconds(),
+          timer: setInterval(() => this.updateTime(1), 1000),
+        })
     })
   }
 
@@ -84,17 +120,40 @@ class MiddlePanel extends React.Component {
   }
 
   render() {
-    let {timeHour, timeMinute, timeSecond} = this.state;
+    let {timeHour, timeMinute} = this.state;
     return (
+      
       <div className="middle-panel__container">
-        <Greeting name={this.props.name} hour={timeHour} minute={timeMinute}/>
-        <Focus 
-          handleFocusChange={this.handleFocusChange} 
-          focus={this.state.focus}
-          focusEntered={this.state.focusEntered}
-          handleFocusEntered={this.handleFocusEntered}
-        />
-        <Quote className="quote"/>
+        {
+          this.state.quoteEntered ?
+          <React.Fragment>
+            <Greeting name={this.props.name} hour={timeHour} minute={timeMinute}/>
+            <Focus 
+              handleFocusChange={this.handleFocusChange} 
+              focus={this.state.focus}
+              focusEntered={this.state.focusEntered}
+              focusCompleted={this.state.focusCompleted}
+              handleFocusEntered={this.handleFocusEntered}
+              changeFocusCompletion={this.changeFocusCompletion}
+              handleCancelFocus={this.handleCancelFocus}
+            />
+            <Quote quote={this.state.quote} quoteAuthor={this.state.quoteAuthor} className="quote"/>
+          </React.Fragment>
+          : 
+          <React.Fragment>
+            <Greeting name={this.props.name} hour={timeHour} minute={timeMinute}/>
+            <Focus 
+              handleFocusChange={this.handleFocusChange} 
+              focus={this.state.focus}
+              focusEntered={this.state.focusEntered}
+              focusCompleted={this.state.focusCompleted}
+              handleFocusEntered={this.handleFocusEntered}
+              changeFocusCompletion={this.changeFocusCompletion}
+              handleCancelFocus={this.handleCancelFocus}
+            />
+            <Quote quote="loading..." className="quote"/>
+          </React.Fragment>
+        }
       </div>
     );
   }
@@ -153,26 +212,31 @@ const Focus = (props) => {
           </div> :
             <div>
               <h5 className="focus__day"> TODAY </h5>
-              <div className="focus__content">
-                {
-                  props.completed ? 
-                    <FontAwesome className="hidden-box" name="check-square" /> :
-                      <FontAwesome className="hidden-box" name="square" />
-
-                }
-                <h4 className="focus__content-text"> {props.focus} </h4>
-                <FontAwesome className="hidden-x"  name='times' onClick={() => alert("clicked!")}/>
-              </div>
+              {
+                  props.focusCompleted ?
+                    <div className="focus__content">
+                        <FontAwesome className="box" name="check-square" onClick={props.changeFocusCompletion}/>
+                        <h4 className="focus__content-text completed"> {props.focus} </h4>
+                        <FontAwesome className="x"  name='plus' onClick={props.handleCancelFocus}/>
+                    </div>
+                        :
+                            <div className="focus__content">
+                                <FontAwesome className="hidden-box" name="square" onClick={props.changeFocusCompletion}/>
+                                <h4 className="focus__content-text"> {props.focus} </h4>
+                                <FontAwesome className="hidden-x"  name='times' onClick={props.handleCancelFocus}/>
+                            </div>
+              }
             </div>
       }
     </div>
   );
 }
 
-const Quote = () => {
+const Quote = (props) => {
   return (
     <div className="quote">
-      <p> Stay hungry, stay foolish </p>
+      <p> {props.quote} </p>
+      <p className="quote__author-hidden"> {props.quoteAuthor} </p>
     </div>
   );
 }

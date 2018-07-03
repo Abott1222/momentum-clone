@@ -74,15 +74,36 @@
 .hidden-x {
     opacity:0;
     transition: opacity 1s ease-in;
-    padding-left:4px;
+    padding-left:6px;
+}
+
+.x {
+    padding-left:6px;
+}
+
+.box {
+    padding-right:6px;
 }
 
 .hidden-box {
     opacity: 0;
     transition: opacity 1s ease-in;
-    padding-right:4px;
+    padding-right:6px;
 }
 
 .focus__content:hover .hidden-x, .focus__content:hover .hidden-box {
     opacity: 1;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.quote__author-hidden {
+    display:none;
+    transition: display 10s ease-in;
+}
+
+.quote:hover .quote__author-hidden{
+    display:block;
 }
