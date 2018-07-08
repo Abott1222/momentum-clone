@@ -206,7 +206,7 @@ const Focus = (props) => {
     <div className="focus" onKeyUp={props.handleFocusEntered}>
       {
         !props.focusEntered ?
-          <div>
+          <div className="enter-focus">
             <h4 className="focus__title"> What is your main focus for today? </h4>
             <input onChange={props.handleFocusChange} value={props.focus} className="focus__input" /> 
           </div> :

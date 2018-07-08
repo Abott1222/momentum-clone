@@ -18,21 +18,25 @@
 }
 
 .greeting {
+    
     text-align: center;
     margin-bottom:15vh;
 }
 
 .greeting-time {
-    font-size: 900%;
+    font-size: 950%;
     font-weight: 500;
 }
 
 .greeting-name {
-    font-size:300%;
+    font-size:320%;
     font-weight: 520;
 }
 
+
+
 .focus {
+    
     text-align:center;
     margin-bottom: 15vh;
     font-size:150%;
@@ -74,26 +78,38 @@
 .hidden-x {
     opacity:0;
     transition: opacity 1s ease-in;
-    padding-left:6px;
+    margin-left:6px;
+    padding: 1px 1px 1px 1px;
 }
 
 .x {
-    padding-left:6px;
+    margin-left:6px;
+    padding: 1px 1px 1px 1px;
+    
 }
 
 .box {
-    padding-right:6px;
+    margin-right:6px;
 }
 
 .hidden-box {
     opacity: 0;
     transition: opacity 1s ease-in;
-    padding-right:6px;
+    margin-right:6px;
+    
 }
 
-.focus__content:hover .hidden-x, .focus__content:hover .hidden-box {
+.focus:hover .hidden-x, .focus:hover .hidden-box {
     opacity: 1;
 }
+
+/*
+.hidden-x:hover {
+    border: 2px solid white;
+    border-radius: 100%;
+}
+*/
+
 
 .completed {
     text-decoration: line-through;
