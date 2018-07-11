@@ -1,7 +1,11 @@
+.greeting, .focus, .quote {
+    position:relative;
+}
+
 .middle-panel__container {
     display:flex;
     flex-direction: column;
-    justify-content: flex-end;
+    
    
     color: rgba(255,255,255,.99);
 }
@@ -18,7 +22,7 @@
 }
 
 .greeting {
-    
+    top:38%;
     text-align: center;
     margin-bottom:15vh;
 }
@@ -36,10 +40,17 @@
 
 
 .focus {
-    
     text-align:center;
     margin-bottom: 15vh;
     font-size:150%;
+    top:28%;
+    /* padding-top:60px; */
+}
+
+@media (min-height:1030px) {
+    .focus {
+        padding-top:60px;
+    }
 }
 
 .focus__title {
@@ -69,10 +80,7 @@
     flex-direction: row;
     justify-content: center;
     padding-top: 10px;
-}
-.quote {
-    text-align: center;
-    padding-bottom: 12px;
+    padding-bottom: 42px;
 }
 
 .hidden-x {
@@ -115,11 +123,24 @@
     text-decoration: line-through;
 }
 
+.quote {
+    text-align: center;
+    padding-bottom: 12px;
+    top:27%;
+}
+
+.quote p {
+    transition: all 1s;
+}
+
 .quote__author-hidden {
     display:none;
-    transition: display 10s ease-in;
 }
 
 .quote:hover .quote__author-hidden{
     display:block;
+}
+
+.quote:hover .quote-text {
+    transform: translateY(-100%);
 }

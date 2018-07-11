@@ -235,7 +235,7 @@ const Focus = (props) => {
 const Quote = (props) => {
   return (
     <div className="quote">
-      <p> {props.quote} </p>
+      <p className="quote-text"> {props.quote} </p>
       <p className="quote__author-hidden"> {props.quoteAuthor} </p>
     </div>
   );
