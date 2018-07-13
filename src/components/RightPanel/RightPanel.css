@@ -3,21 +3,39 @@
 
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    
     align-items: flex-end;
     
 }
 
-.right-panel__weather-container {
-    /*
+.right-panel__container {
     display:flex;
-    flex-direction: column; */
-
-    
+    flex-direction: column;
+    justify-content: space-between;
 }
-/* temp styles */
 
 .right-panel__btn {
     padding-right: 6vh;
-    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.right-panel__top-row {
+    display:flex;
+    flex-direction: row;
+}
+
+.right-panel__weather-container {
+    color:white;
+
+    margin-top: 12px;
+    margin-right: 2vh;
+}
+
+.weather-temp {
+    margin-left: .75vh;
+    font-size: 150%;
+}
+
+.weather-icon {
+    padding-bottom: 10px;
 }

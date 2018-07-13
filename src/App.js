@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './weather-icons/css/weather-icons.min.css';
 import LeftPanel from './components/LeftPanel/LeftPanel';
 import MiddlePanel from './components/MiddlePanel/MiddlePanel';
 import RightPanel from './components/RightPanel/RightPanel';
@@ -88,13 +89,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    
     let url = 'https://pixabay.com/api/?key=9385886-d89ec14d25ef4a913e3bbe0cf&q=inspiration&image_type=photo&min_width=600&min_height=600&colors=brown';
+    
     fetch(url)
       .then(result => result.json())
       .then(data => {
          this.setState({backgroundImageUrl: data.hits[0].largeImageURL})
       })
+      
   }
   
   render() {

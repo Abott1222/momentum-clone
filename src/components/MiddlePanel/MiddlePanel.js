@@ -91,8 +91,14 @@ class MiddlePanel extends React.Component {
   componentDidMount() {
     
     const {dateObj} = this.state;
+    this.setState({
+      dateObj: new Date(),
+      timeHour:  dateObj.getHours(),
+      timeMinute: dateObj.getMinutes(),
+      timeSecond: dateObj.getSeconds(),
+      timer: setInterval(() => this.updateTime(1), 1000),
+    })
     let quoteUrl = 'https://quote-api.glitch.me/pull/1';
-    
     fetch(quoteUrl, {mode: 'cors'})
     .then(result => result.json())
     .then(data => {
@@ -102,11 +108,7 @@ class MiddlePanel extends React.Component {
           quote: resp.body,
           quoteAuthor: resp.author,
           quoteEntered: true,
-          dateObj: new Date(),
-          timeHour:  dateObj.getHours(),
-          timeMinute: dateObj.getMinutes(),
-          timeSecond: dateObj.getSeconds(),
-          timer: setInterval(() => this.updateTime(1), 1000),
+          
         })
     })
   }

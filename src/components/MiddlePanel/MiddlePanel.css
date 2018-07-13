@@ -49,8 +49,24 @@
 
 @media (min-height:1030px) {
     .focus {
-        padding-top:60px;
+        /* padding-top:60px */
+        margin-top:60px;
     }
+}
+
+@media (max-height: 880px) {
+    
+    .greeting {
+        top: 32vh !important;
+        margin-bottom: 12vh;
+    }
+
+    .greeting-name {
+        font-size:300%;
+    }
+
+    .focus {top:28vh;}
+    .quote {top:19vh !important;}
 }
 
 .focus__title {
@@ -126,7 +142,7 @@
 .quote {
     text-align: center;
     padding-bottom: 12px;
-    top:27%;
+    top:28%;
 }
 
 .quote p {
@@ -139,6 +155,7 @@
 
 .quote:hover .quote__author-hidden{
     display:block;
+    transform:translateY(-50%);
 }
 
 .quote:hover .quote-text {
