@@ -15,8 +15,8 @@
 }
 
 .right-panel__btn {
-    padding-right: 6vh;
-    padding-bottom: 12px;
+    margin-bottom: 12px;
+    margin-right: 2vh;
 }
 
 .right-panel__top-row {
@@ -39,3 +39,94 @@
 .weather-icon {
     padding-bottom: 10px;
 }
+
+.todo-list-menu {
+    position: absolute;
+    bottom:6vh;
+    right: 2vh;
+    
+
+    width:300px;
+    max-height:50%;
+    overflow-y: auto;
+    
+ 
+    background: #0b0b0cc4;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    
+}
+
+.todo-list-menu_top-row {
+    /*
+    padding-left: 1.5vw;
+    padding-top: 1vh;
+    */
+    padding: 1.5vh 0 1.5vh 1.5vw;
+    font-size: 90%;
+    color: rgba(255,255,255,.7);
+}
+
+.todo-container {
+    padding-left: 1.5vw;
+}
+
+.todo-container_content {
+    color:white;
+    font-weight: 50;
+    font-size: 14px;
+    
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: .5vh 0 .5vh 0;
+}
+
+.todo-container_content--left {
+    display:flex;
+    flex-direction: row;
+}
+
+
+.menu-hidden {
+    visibility: hidden;
+}
+
+.menu-show {
+    visibility: visible;
+}
+
+.box, .x {
+    color:white;
+}
+
+.x {
+    padding-right: .75vw;
+}
+/*
+.todo-list-menu {
+    position:relative;
+    top:2vh;
+    left: 2vh;
+
+    width:150px;
+    max-height:50%;
+    overflow-y: auto;
+    
+ 
+    background: #0b0b0cc4;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+
+
+.link {
+    text-decoration: none;
+    font-size: 10px;
+    color: rgba(255,255,255,.7);
+    margin-top: 0px;
+}
+*/

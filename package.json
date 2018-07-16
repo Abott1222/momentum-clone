@@ -2,7 +2,9 @@
   "name": "momentum-clone",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://abott1222.github.io/momentum-clone/",
   "dependencies": {
+    "gh-pages": "^1.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-fontawesome": "^1.6.1",

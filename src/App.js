@@ -40,6 +40,33 @@ class App extends Component {
           name: 'Reddit',
           url: 'https://www.reddit.com'
         },
+      ],
+      todos: [
+        {
+          id: 0,
+          name: 'thing 1',
+          completed: false,
+        },
+        {
+          id: 1,
+          name: 'thing 2',
+          completed: true,
+        },
+        {
+          id: 2,
+          name: 'thing 3',
+          completed: false,
+        },
+        {
+          id: 3,
+          name: 'thing 4',
+          completed: false,
+        },
+        {
+          id: 4,
+          name: 'thing 5',
+          completed: false,
+        },
       ]
     }
     this.addLink = this.addLink.bind(this);
@@ -103,7 +130,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.backgroundImageUrl.length > 2 ? !this.state.nameEntered ? <FirstGreeting backgroundImage={this.state.backgroundImageUrl} name={this.state.name} handleNameInput={this.handleNameInput} handleNameEnter={this.handleNameEnter}/> :
-           <LandingPage name={this.state.name} addLink={this.addLink} removeLink={this.removeLink} links={this.state.links} backgroundImage={this.state.backgroundImageUrl}/> 
+           <LandingPage name={this.state.name} addLink={this.addLink} removeLink={this.removeLink} links={this.state.links} todos={this.state.todos} backgroundImage={this.state.backgroundImageUrl}/> 
            : <span> Loading ... </span>}
       </div>
     );
@@ -153,7 +180,7 @@ const LandingPage = (props) => {
     <div className="landing-page" style={LandingPageStyle}>
       <LeftPanel links={props.links} addLink={props.addLink} removeLink={props.removeLink}/>
       <MiddlePanel name={props.name}/>
-      <RightPanel />
+      <RightPanel todos={props.todos}/>
     </div>
   );
 }

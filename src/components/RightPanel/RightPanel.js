@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Button from '../Misc/Button';
 import './RightPanel.css';
+var FontAwesome = require('react-fontawesome');
 
   const mapWeatherToIcon = {
     "clear sky": 'wi-day-sunny',
@@ -26,6 +27,7 @@ import './RightPanel.css';
         city: '',
         iconUrl: '',
         weatherRecieved: false,
+        todoListVisible: false,
       }
       this.geolocationSuccess = this.geolocationSuccess.bind(this);
     }
@@ -69,6 +71,7 @@ import './RightPanel.css';
       
       return (
         <div className="right-panel__container">
+
         {this.state.weatherRecieved ?
           <WeatherWidgit 
           src={this.state.iconUrl} 
@@ -79,9 +82,11 @@ import './RightPanel.css';
           <React.Fragment>
             <p> Loading... </p>
           </React.Fragment>
-
         }
+        <div>
+          <TodoListMenu todos={this.props.todos}/>
           <Button className="right-panel__btn" text="Todo" />
+        </div>
       </div>
       );
     }
@@ -104,5 +109,78 @@ import './RightPanel.css';
       </div>
     );
   }
+
+  class TodoListMenu extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
+    render() {
+      //pass in prop name either hidden or not...
+      return (
+        <div className={`todo-list-menu ${this.props.className}`}>
+          <div className="todo-list-menu_top-row">
+            <h4> {this.props.todos.length} TO DO </h4>
+          </div>
+          {
+            this.props.todos.length > 0 ?
+              <div className="todo-list-menu_list">
+                <ul>
+                  {this.props.todos.map( (todo, ix) => {
+                          return (
+                              <li key={todo.id}>
+                                  <Todo faClass="chevron-circle-right" todo={todo}/>
+                              </li>
+                          );
+                  })}
+                </ul>
+              </div> :
+                <div className="todo-list-menu_list">
+                </div>
+          }
+          <div className="todo-list-menu_list">
+          </div>
+          
+        </div>
+      );
+    }
+  }
+
+  /*
+ {
+          id: 0,
+          name: 'Thing1',
+          completed: false,
+        },
+  */
+  const Todo = ({todo, removeTodo}) => {
+    return (
+      <div className="todo-container">
+        <div className="todo-container_left">
+          {
+            !todo.completed ?
+              <div className="todo-container_content">
+                <div className="todo-container_content--left">
+                  <FontAwesome className="box" name="square"/>
+                  <h4> {todo.name} </h4>
+                </div>
+                <FontAwesome className="x"  name='times'/>
+              </div> 
+                :
+                  <div className="todo-container_content">
+                    <div className="todo-container_content--left">
+                      <FontAwesome className="box" name="check-square"/>
+                      <h4> {todo.name} </h4>
+                    </div>
+                    <FontAwesome className="x"  name='times'/>
+                  </div>
+          }
+        </div>
+      </div>
+    );
+  }
+
+
+
 
   export default RightPanel;
