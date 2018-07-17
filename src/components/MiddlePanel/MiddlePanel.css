@@ -54,6 +54,12 @@
     }
 }
 
+@media (min-height:881px) and (max-height:1029px) {
+    .quote {
+        top: 20vh !important;
+    }
+}
+
 @media (max-height: 880px) {
     
     .greeting {
