@@ -97,36 +97,33 @@
     visibility: visible;
 }
 
-.box, .x {
+.todo-box, .todo-hidden-x {
     color:white;
 }
 
-.x {
-    padding-right: .75vw;
-}
-/*
-.todo-list-menu {
-    position:relative;
-    top:2vh;
-    left: 2vh;
-
-    width:150px;
-    max-height:50%;
-    overflow-y: auto;
-    
- 
-    background: #0b0b0cc4;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-    padding: 10px 0 10px 0;
+.todo-box {
+    margin: auto 0 auto 0;
+    padding-right: .75em;
 }
 
+.todo-hidden-x {
+    opacity:0;
+    padding-right: 2.5vw;
+}
 
-.link {
-    text-decoration: none;
-    font-size: 10px;
+.todo-container_content:hover .todo-hidden-x {
+    opacity: 1;
+}
+
+.todo-list-menu_input {
+    background:transparent;
+    border:none;
+    width:100%;
+    padding:1vh 10px 1vh 1.5vw;
     color: rgba(255,255,255,.7);
-    margin-top: 0px;
+    font-size: 12.8px;
 }
-*/
+
+.todo-list-menu_input:focus {
+    outline:none;
+}

@@ -14,6 +14,7 @@ class App extends Component {
       backgroundImageUrl: '',
       nameEntered: false,
       numLinks: 5,
+      numTodos: 5,
       links: [
         {
           id: 0,
@@ -70,7 +71,9 @@ class App extends Component {
       ]
     }
     this.addLink = this.addLink.bind(this);
+    this.addTodo = this.addTodo.bind(this);
     this.removeLink = this.removeLink.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleNameEnter = this.handleNameEnter.bind(this);
   }
@@ -87,14 +90,38 @@ class App extends Component {
     })
   }
 
+  addTodo(todo) {
+    //alert(`Got it... name:${name}... url:${url}`);
+    let newObj = {id:this.state.numLinks, name:todo, completed:false};
+    this.setState( (prevState) => {
+      return {
+        numTodos: prevState.numTodos + 1,
+        todos: [...prevState.todos, newObj],
+      }
+    })
+  }
+
   removeLink(id) {
-    alert(`Got it... ix:${id}`);
     let ix = this.state.links.findIndex((elem) => {
       return elem.id === id;
     })
     this.setState((prevState) => {
       return {
         links: prevState.links.filter( (elem, i) => {
+          return i !== ix;
+        })
+      }
+    })
+  }
+
+  removeTodo(id) {
+
+    let ix = this.state.todos.findIndex((elem) => {
+      return elem.id === id;
+    })
+    this.setState((prevState) => {
+      return {
+        todos: prevState.todos.filter( (elem, i) => {
           return i !== ix;
         })
       }
@@ -130,7 +157,11 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.backgroundImageUrl.length > 2 ? !this.state.nameEntered ? <FirstGreeting backgroundImage={this.state.backgroundImageUrl} name={this.state.name} handleNameInput={this.handleNameInput} handleNameEnter={this.handleNameEnter}/> :
-           <LandingPage name={this.state.name} addLink={this.addLink} removeLink={this.removeLink} links={this.state.links} todos={this.state.todos} backgroundImage={this.state.backgroundImageUrl}/> 
+           <LandingPage name={this.state.name} addLink={this.addLink} 
+           removeLink={this.removeLink} links={this.state.links} 
+           todos={this.state.todos} backgroundImage={this.state.backgroundImageUrl}
+           removeTodo={this.removeTodo} addTodo={this.addTodo}
+           /> 
            : <span> Loading ... </span>}
       </div>
     );
@@ -180,7 +211,7 @@ const LandingPage = (props) => {
     <div className="landing-page" style={LandingPageStyle}>
       <LeftPanel links={props.links} addLink={props.addLink} removeLink={props.removeLink}/>
       <MiddlePanel name={props.name}/>
-      <RightPanel todos={props.todos}/>
+      <RightPanel todos={props.todos} removeTodo={props.removeTodo} addTodo={props.addTodo}/>
     </div>
   );
 }

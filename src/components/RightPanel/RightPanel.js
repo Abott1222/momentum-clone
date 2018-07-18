@@ -55,6 +55,7 @@ var FontAwesome = require('react-fontawesome');
         navigator.geolocation.getCurrentPosition(this.geolocationSuccess, this.geolocationError);
       } else {
         /* geolocation not supported in browser */
+        alert("geoloc not allowed!");
       }
     }
     
@@ -84,7 +85,7 @@ var FontAwesome = require('react-fontawesome');
           </React.Fragment>
         }
         <div>
-          <TodoListMenu todos={this.props.todos}/>
+          <TodoListMenu todos={this.props.todos} removeTodo={this.props.removeTodo} addTodo={this.props.addTodo}/>
           <Button className="right-panel__btn" text="Todo" />
         </div>
       </div>
@@ -113,8 +114,29 @@ var FontAwesome = require('react-fontawesome');
   class TodoListMenu extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        todoInput: '',
+      }
+      this.handleTodoInput = this.handleTodoInput.bind(this);
+      this.handleEnterInput = this.handleEnterInput.bind(this);
     }
 
+    handleTodoInput(e) {
+      const val = e.target.value
+      this.setState((prevState)=> {
+        return {
+          todoInput: val,
+        }
+      })
+    }
+
+    handleEnterInput(e) {
+      const {todoInput} = this.state;
+      if(e.key === "Enter") {
+        this.props.addTodo(todoInput);
+        this.setState({todoInput: ''});
+      }
+    }
     render() {
       //pass in prop name either hidden or not...
       return (
@@ -129,17 +151,22 @@ var FontAwesome = require('react-fontawesome');
                   {this.props.todos.map( (todo, ix) => {
                           return (
                               <li key={todo.id}>
-                                  <Todo faClass="chevron-circle-right" todo={todo}/>
+                                  <Todo faClass="chevron-circle-right" todo={todo} removeTodo={this.props.removeTodo}/>
                               </li>
                           );
                   })}
                 </ul>
               </div> :
+                //no todos yet section
                 <div className="todo-list-menu_list">
                 </div>
           }
-          <div className="todo-list-menu_list">
+          <div onKeyDown={this.handleEnterInput}>
+            <input className="todo-list-menu_input" placeholder="New Todo" value={this.state.todoInput}
+            onChange={this.handleTodoInput}
+            />
           </div>
+          
           
         </div>
       );
@@ -161,18 +188,18 @@ var FontAwesome = require('react-fontawesome');
             !todo.completed ?
               <div className="todo-container_content">
                 <div className="todo-container_content--left">
-                  <FontAwesome className="box" name="square"/>
+                  <FontAwesome className="todo-box" name="square"/>
                   <h4> {todo.name} </h4>
                 </div>
-                <FontAwesome className="x"  name='times'/>
+                <FontAwesome className="todo-hidden-x"  name='times' onClick={() => removeTodo(todo.id)}/>
               </div> 
                 :
                   <div className="todo-container_content">
                     <div className="todo-container_content--left">
-                      <FontAwesome className="box" name="check-square"/>
+                      <FontAwesome className="todo-box" name="check-square"/>
                       <h4> {todo.name} </h4>
                     </div>
-                    <FontAwesome className="x"  name='times'/>
+                    <FontAwesome className="todo-hidden-x"  name='times' onClick={() => removeTodo(todo.id)}/>
                   </div>
           }
         </div>
