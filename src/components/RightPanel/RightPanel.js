@@ -30,6 +30,7 @@ var FontAwesome = require('react-fontawesome');
         todoListVisible: false,
       }
       this.geolocationSuccess = this.geolocationSuccess.bind(this);
+      this.changeTodoListVisibility = this.changeTodoListVisibility.bind(this);
     }
     
     geolocationSuccess(position) {
@@ -68,6 +69,14 @@ var FontAwesome = require('react-fontawesome');
       
     }
 
+    changeTodoListVisibility() {
+      this.setState((prevState)=> {
+        return { 
+          todoListVisible: !prevState.todoListVisible,
+        }
+      })
+    }
+
     render() {
       
       return (
@@ -85,8 +94,13 @@ var FontAwesome = require('react-fontawesome');
           </React.Fragment>
         }
         <div>
-          <TodoListMenu todos={this.props.todos} removeTodo={this.props.removeTodo} addTodo={this.props.addTodo}/>
-          <Button className="right-panel__btn" text="Todo" />
+          {
+            this.state.todoListVisible ? 
+              <TodoListMenu todos={this.props.todos} removeTodo={this.props.removeTodo} addTodo={this.props.addTodo}/> :
+                null
+          }
+          
+          <Button className="right-panel__btn" text="Todo" onClick={this.changeTodoListVisibility}/>
         </div>
       </div>
       );
@@ -110,6 +124,10 @@ var FontAwesome = require('react-fontawesome');
       </div>
     );
   }
+
+
+
+  
 
   class TodoListMenu extends React.Component {
     constructor(props) {
@@ -146,8 +164,8 @@ var FontAwesome = require('react-fontawesome');
           </div>
           {
             this.props.todos.length > 0 ?
-              <div className="todo-list-menu_list">
-                <ul>
+
+                <ul className="todo-list-todos">
                   {this.props.todos.map( (todo, ix) => {
                           return (
                               <li key={todo.id}>
@@ -155,8 +173,7 @@ var FontAwesome = require('react-fontawesome');
                               </li>
                           );
                   })}
-                </ul>
-              </div> :
+                </ul> : 
                 //no todos yet section
                 <div className="todo-list-menu_list">
                 </div>

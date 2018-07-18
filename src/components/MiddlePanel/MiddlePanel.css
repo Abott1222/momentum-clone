@@ -47,6 +47,12 @@
     /* padding-top:60px; */
 }
 
+@media (max-width:840px) {
+    .quote {
+        top:19vh !important;
+    }
+}
+
 @media (min-height:1030px) {
     .focus {
         /* padding-top:60px */

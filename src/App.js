@@ -51,7 +51,7 @@ class App extends Component {
         {
           id: 1,
           name: 'thing 2',
-          completed: true,
+          completed: false,
         },
         {
           id: 2,
@@ -92,7 +92,7 @@ class App extends Component {
 
   addTodo(todo) {
     //alert(`Got it... name:${name}... url:${url}`);
-    let newObj = {id:this.state.numLinks, name:todo, completed:false};
+    let newObj = {id: this.state.numTodos, name:todo, completed:false};
     this.setState( (prevState) => {
       return {
         numTodos: prevState.numTodos + 1,
