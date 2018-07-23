@@ -53,8 +53,9 @@ class LeftPanel extends React.Component {
     }
 
     handleSearchEnter({key}) {
-        let search = 'https://www.google.com/?q=';
-        if(key === "Enter" && this.state.searchVal.length > 4) {
+        
+        let search = 'https://www.google.com/search?q=';
+        if(key === "Enter" && this.state.searchVal.length > 1) {
             let val = this.state.searchVal.split()
             search = search + this.state.searchVal;
             this.setState({searchVal: ''});
