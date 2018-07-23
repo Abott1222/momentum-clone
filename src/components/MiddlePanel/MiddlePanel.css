@@ -46,15 +46,14 @@
     top:28%;
     /* padding-top:60px; */
 }
-/*
-dont need width....
 
-@media (max-width:840px) {
-    .quote {
-        top:19vh !important;
+
+@media (max-width:906px) {
+    .focus__title {
+        font-size: 110% !important;
     }
 }
-*/
+
 
 @media (min-height:1087px) {
     .focus {
@@ -155,6 +154,46 @@ dont need width....
     .quote {top:25vh !important;}
 }
 
+@media (max-height: 749px) and (min-height:721px) {
+    
+    .greeting {
+        top: 30.5vh !important;
+        margin-bottom: 5vh;
+        
+    }
+
+    .greeting-name {
+        font-size:295%;
+    }
+
+    .greeting-time {
+        font-size: 750% !important;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:32vh !important;}
+}
+
+@media (max-height: 720px) and (min-height:676px) {
+    
+    .greeting {
+        top: 30.5vh !important;
+        margin-bottom: 5vh;
+        
+    }
+
+    .greeting-name {
+        font-size:295%;
+    }
+
+    .greeting-time {
+        font-size: 750% !important;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:29vh !important;}
+}
+
 @media (max-height: 675px) and (min-height:641px) {
     
     .greeting {
@@ -198,7 +237,7 @@ dont need width....
 @media (max-height: 605px) and (min-height:555px) {
     
     .greeting {
-        top: 30.5vh !important;
+        top: 30vh !important;
         margin-bottom: 5vh;
         
     }
@@ -213,6 +252,26 @@ dont need width....
 
     .focus {top:27vh;}
     .quote {top:25vh !important;}
+}
+
+@media (max-height: 604px) {
+    
+    .greeting {
+        top: 30vh !important;
+        margin-bottom: 3vh;
+        
+    }
+
+    .greeting-name {
+        font-size:270%;
+    }
+
+    .greeting-time {
+        font-size: 725% !important;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:21vh !important;}
 }
 
 .focus__title {
