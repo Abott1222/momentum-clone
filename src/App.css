@@ -54,3 +54,12 @@
   outline: none;
 }
 
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color:transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color:#636363de;
+  border-radius: 15px;
+}

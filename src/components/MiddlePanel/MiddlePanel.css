@@ -46,27 +46,69 @@
     top:28%;
     /* padding-top:60px; */
 }
+/*
+dont need width....
 
 @media (max-width:840px) {
     .quote {
         top:19vh !important;
     }
 }
+*/
 
-@media (min-height:1030px) {
+@media (min-height:1087px) {
     .focus {
         /* padding-top:60px */
-        margin-top:60px;
+        margin-top:53px;
     }
-}
 
-@media (min-height:881px) and (max-height:1029px) {
     .quote {
-        top: 20vh !important;
+        top: 30.5vh !important;
+    }
+
+
+}
+@media (min-height:1030px) and (max-height:1086) {
+    .focus {
+        /* padding-top:60px */
+        margin-top:50px;
+    }
+
+    .quote {
+        top: 28vh !important;
+    }
+
+
+}
+
+@media (min-height:881px) and (max-height:920px) {
+    .quote {
+        top: 27.25vh !important;
     }
 }
 
-@media (max-height: 880px) {
+@media (min-height:802px) and (max-height:880px) {
+    .quote {
+        top: 25vh !important;
+    }
+}
+
+@media (min-height:771px) and (max-height:801px) {
+    .quote {
+        top: 23vh !important;
+    }
+
+    .greeting-name {
+        font-size:300%;
+    }
+
+    .greeting-time {
+        font-size: 800% !important;
+    }
+}
+
+/*std size */
+@media (max-height: 770px) and (min-height:769px) {
     
     .greeting {
         top: 32vh !important;
@@ -77,8 +119,100 @@
         font-size:300%;
     }
 
+
+
     .focus {top:28vh;}
-    .quote {top:19vh !important;}
+    .quote {top:24vh !important;}
+}
+
+@media (max-height: 768px) and (min-height:760px) {
+    
+    .greeting {
+        top: 30.5vh !important;
+        margin-bottom: 10vh;
+    }
+
+    .greeting-name {
+        font-size:280%;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:25.8vh !important;}
+}
+
+@media (max-height: 759px) and (min-height:750px) {
+    
+    .greeting {
+        top: 30.5vh !important;
+        margin-bottom: 10vh;
+    }
+
+    .greeting-name {
+        font-size:280%;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:25vh !important;}
+}
+
+@media (max-height: 675px) and (min-height:641px) {
+    
+    .greeting {
+        top: 30.5vh !important;
+        margin-bottom: 5vh;
+        
+    }
+
+    .greeting-name {
+        font-size:295%;
+    }
+
+    .greeting-time {
+        font-size: 750% !important;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:29vh !important;}
+}
+
+@media (max-height: 640px) and (min-height:606px) {
+    
+    .greeting {
+        top: 30.5vh !important;
+        margin-bottom: 5vh;
+        
+    }
+
+    .greeting-name {
+        font-size:280%;
+    }
+
+    .greeting-time {
+        font-size: 750% !important;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:26vh !important;}
+}
+
+@media (max-height: 605px) and (min-height:555px) {
+    
+    .greeting {
+        top: 30.5vh !important;
+        margin-bottom: 5vh;
+        
+    }
+
+    .greeting-name {
+        font-size:280%;
+    }
+
+    .greeting-time {
+        font-size: 750% !important;
+    }
+
+    .focus {top:27vh;}
+    .quote {top:25vh !important;}
 }
 
 .focus__title {
