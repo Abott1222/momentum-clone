@@ -8,7 +8,7 @@ const Button = ({text, className, onClick}) => {
       background: 'transparent',
       fontFamily: 'Helvetica,Arial,san-serif',
       border: 'none',
-      fontSize: '90%'
+      fontSize: '105%'
   
     }
     return (

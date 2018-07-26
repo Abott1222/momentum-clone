@@ -53,7 +53,6 @@ class LeftPanel extends React.Component {
     }
 
     handleSearchEnter({key}) {
-        
         let search = 'https://www.google.com/search?q=';
         if(key === "Enter" && this.state.searchVal.length > 1) {
             let val = this.state.searchVal.split()
@@ -135,9 +134,20 @@ class LinksMenu extends React.Component {
     }
 
     handleKeyDown(e) {
+        //test to see if link contains http or https. If not add it
+        let re = '^(http|https)://';
         
+        
+
         if(e.key==='Enter' && this.state.urlVal.length>=1 && this.state.nameVal.length>=1) {
-            this.props.addLink(this.state.nameVal, this.state.urlVal);
+            let urlVal = this.state.urlVal;
+
+            if(urlVal.search(re) == -1) {
+                //missing http or https
+                urlVal = "https://" + urlVal
+                
+            }
+            this.props.addLink(this.state.nameVal, urlVal);
             this.props.changeInputVisability();
             this.setState({urlVal:'',nameVal:''});
         } else {

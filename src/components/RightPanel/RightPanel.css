@@ -94,6 +94,10 @@
     flex-direction: row;
 }
 
+.todo-content {
+    
+}
+
 
 .menu-hidden {
     visibility: hidden;
@@ -103,7 +107,7 @@
     visibility: visible;
 }
 
-.todo-box, .todo-hidden-x {
+.todo-box {
     color:white;
 }
 
@@ -113,8 +117,21 @@
 }
 
 .todo-hidden-x {
+    box-sizing:border-box;
     opacity:0;
-    padding-right: 2.5vw;
+    margin-right: 1.5vw;
+    color: rgba(255,255,255,.7);
+    padding: 2px 2px 2px 2px;
+    cursor: pointer;
+    border-radius:95%;
+}
+
+.todo-hidden-x:hover {
+    /*
+    border-radius:95%;
+    border: 1px solid white;
+    */
+    color:white;
 }
 
 .todo-container_content:hover .todo-hidden-x {
@@ -132,6 +149,10 @@
 
 .todo-list-menu_input:focus {
     outline:none;
+}
+
+completed {
+    text-decoration: line-through;
 }
 
 

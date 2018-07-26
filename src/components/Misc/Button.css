@@ -2,6 +2,7 @@
     max-height: 5vh;
     max-width: 5vw;
     color: rgba(255,255,255,.7);
+    font-size:200%;
 }
 
 .btn:focus {

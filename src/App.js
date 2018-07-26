@@ -76,6 +76,7 @@ class App extends Component {
     this.removeTodo = this.removeTodo.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleNameEnter = this.handleNameEnter.bind(this);
+    this.changeTodoCompleted = this.changeTodoCompleted.bind(this);
   }
   //will update in LandingPage but LinksMenu wont update?
   //was putting props into state and thus the child's state didnt update -> no render
@@ -109,6 +110,21 @@ class App extends Component {
       return {
         links: prevState.links.filter( (elem, i) => {
           return i !== ix;
+        })
+      }
+    })
+  }
+
+  changeTodoCompleted(id) {
+    this.setState((prevState) => {
+      return {
+        todos: prevState.todos.map((todo) => {
+          if(todo.id === id) {
+            todo.completed = !todo.completed;
+            return todo;
+          } else {
+            return todo;
+          }
         })
       }
     })
@@ -161,6 +177,7 @@ class App extends Component {
            removeLink={this.removeLink} links={this.state.links} 
            todos={this.state.todos} backgroundImage={this.state.backgroundImageUrl}
            removeTodo={this.removeTodo} addTodo={this.addTodo}
+           changeTodoCompleted = {this.changeTodoCompleted}
            /> 
            : <span> Loading ... </span>}
       </div>
@@ -211,7 +228,7 @@ const LandingPage = (props) => {
     <div className="landing-page" style={LandingPageStyle}>
       <LeftPanel links={props.links} addLink={props.addLink} removeLink={props.removeLink}/>
       <MiddlePanel name={props.name}/>
-      <RightPanel todos={props.todos} removeTodo={props.removeTodo} addTodo={props.addTodo}/>
+      <RightPanel todos={props.todos} removeTodo={props.removeTodo} addTodo={props.addTodo} changeTodoCompleted={props.changeTodoCompleted}/>
     </div>
   );
 }

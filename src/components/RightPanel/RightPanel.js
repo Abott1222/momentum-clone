@@ -96,7 +96,10 @@ var FontAwesome = require('react-fontawesome');
         <div>
           {
             this.state.todoListVisible ? 
-              <TodoListMenu todos={this.props.todos} removeTodo={this.props.removeTodo} addTodo={this.props.addTodo}/> :
+              <TodoListMenu
+              todos={this.props.todos} removeTodo={this.props.removeTodo} addTodo={this.props.addTodo}
+              changeTodoCompleted={this.props.changeTodoCompleted}
+              /> :
                 null
           }
           
@@ -169,7 +172,9 @@ var FontAwesome = require('react-fontawesome');
                   {this.props.todos.map( (todo, ix) => {
                           return (
                               <li key={todo.id}>
-                                  <Todo faClass="chevron-circle-right" todo={todo} removeTodo={this.props.removeTodo}/>
+                                  <Todo faClass="chevron-circle-right" todo={todo} removeTodo={this.props.removeTodo}
+                                  changeTodoCompleted = {this.props.changeTodoCompleted}
+                                  />
                               </li>
                           );
                   })}
@@ -197,7 +202,7 @@ var FontAwesome = require('react-fontawesome');
           completed: false,
         },
   */
-  const Todo = ({todo, removeTodo}) => {
+  const Todo = ({todo, removeTodo, changeTodoCompleted}) => {
     return (
       <div className="todo-container">
         <div className="todo-container_left">
@@ -205,16 +210,16 @@ var FontAwesome = require('react-fontawesome');
             !todo.completed ?
               <div className="todo-container_content">
                 <div className="todo-container_content--left">
-                  <FontAwesome className="todo-box" name="square"/>
-                  <h4> {todo.name} </h4>
+                  <FontAwesome className="todo-box" name="square" onClick={() => changeTodoCompleted(todo.id)}/>
+                  <h4 className="todo-content"> {todo.name} </h4>
                 </div>
                 <FontAwesome className="todo-hidden-x"  name='times' onClick={() => removeTodo(todo.id)}/>
               </div> 
                 :
                   <div className="todo-container_content">
                     <div className="todo-container_content--left">
-                      <FontAwesome className="todo-box" name="check-square"/>
-                      <h4> {todo.name} </h4>
+                      <FontAwesome className="todo-box" name="check-square" onClick={() => changeTodoCompleted(todo.id)}/>
+                      <h4 className="todo-content completed"> {todo.name} </h4>
                     </div>
                     <FontAwesome className="todo-hidden-x"  name='times' onClick={() => removeTodo(todo.id)}/>
                   </div>

@@ -19,6 +19,7 @@
 .left-panel__search-btn {
     /* padding-left: 1vh; */
     color: rgba(255,255,255,.7);
+    padding-bottom:11px;
 }
 
 .left-panel__button-container {
@@ -28,6 +29,7 @@
 .left-panel__search-wrapper {
     padding: 12px 0 0 3px;
     margin-left: 2.5vh;
+    margin-top: 1vh;
 }
 
 .left-panel__search-input {
@@ -62,7 +64,7 @@
  
     background: #0b0b0cc4;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 17px;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
 }
@@ -82,7 +84,7 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    padding:2px 10px 2px 10px;
+    padding:4px 10px 4px 10px;
     color: rgba(255,255,255,.7);
 }
 
@@ -151,6 +153,8 @@
     border:none;
     color: rgba(255,255,255,.7);
     padding-left:5px;
+    padding-bottom:10px;
+    font-size:80%;
     
 }
 
