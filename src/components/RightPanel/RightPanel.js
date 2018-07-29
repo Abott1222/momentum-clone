@@ -78,7 +78,6 @@ var FontAwesome = require('react-fontawesome');
     }
 
     render() {
-      
       return (
         <div className="right-panel__container">
 
@@ -137,9 +136,11 @@ var FontAwesome = require('react-fontawesome');
       super(props);
       this.state = {
         todoInput: '',
+        inputVisibile: false,
       }
       this.handleTodoInput = this.handleTodoInput.bind(this);
       this.handleEnterInput = this.handleEnterInput.bind(this);
+      this.handleNewTodoButtonClick = this.handleNewTodoButtonClick.bind(this);
     }
 
     handleTodoInput(e) {
@@ -151,11 +152,23 @@ var FontAwesome = require('react-fontawesome');
       })
     }
 
+    handleNewTodoButtonClick() {
+      this.setState({inputVisibile: true });
+    }
+
     handleEnterInput(e) {
       const {todoInput} = this.state;
+      let prevListLength = this.props.todos.length;
       if(e.key === "Enter") {
         this.props.addTodo(todoInput);
-        this.setState({todoInput: ''});
+        this.setState((prevState)=> {
+          return {
+            todoInput: '',
+            //simple housekeeping
+            //besides resetting input we need to reset the visibility so that once the last todo is deleted we are back where we started in terms of state
+            inputVisibile: prevListLength === 0? !prevState.inputVisibile : prevState.inputVisibile,
+          }
+        })
       }
     }
     render() {
@@ -178,16 +191,27 @@ var FontAwesome = require('react-fontawesome');
                               </li>
                           );
                   })}
+                  <div onKeyDown={this.handleEnterInput}>
+                    <input className="todo-list-menu_input" placeholder="New Todo" value={this.state.todoInput}
+                    onChange={this.handleTodoInput}
+                    />
+                  </div>
                 </ul> : 
                 //no todos yet section
-                <div className="todo-list-menu_list">
+                <div>
+                  <div className="todo-list-todos__empty">
+                    <h4> No todos yet </h4>
+                    <h5> Add a todo to get started </h5>
+                    <span className={"todo-list-todos__empty-btn" + (this.state.inputVisibile ? " hidden" : '') } onClick={this.handleNewTodoButtonClick}> New Todo </span>
+                  </div>
+                    <div onKeyDown={this.handleEnterInput} className={this.state.inputVisibile ? '' : "hidden"}>
+                      <input className="todo-list-menu_input" placeholder="New Todo" value={this.state.todoInput}
+                      onChange={this.handleTodoInput}
+                      />
+                    </div>
                 </div>
           }
-          <div onKeyDown={this.handleEnterInput}>
-            <input className="todo-list-menu_input" placeholder="New Todo" value={this.state.todoInput}
-            onChange={this.handleTodoInput}
-            />
-          </div>
+          
           
           
         </div>

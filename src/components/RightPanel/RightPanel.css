@@ -94,10 +94,6 @@
     flex-direction: row;
 }
 
-.todo-content {
-    
-}
-
 
 .menu-hidden {
     visibility: hidden;
@@ -151,8 +147,44 @@
     outline:none;
 }
 
+.todo-list-todos__empty {
+    text-align: center;
+    
+}
+
+.todo-list-todos__empty h4 {
+    color: rgba(255,255,255,.65);
+}
+
+.todo-list-todos__empty h5 {
+    color: rgba(255,255,255,.45);
+}
+
+
+.todo-list-todos__empty-btn {
+    display:block;
+    width: 33%;
+    margin: 2vh auto 0 auto;
+    cursor: pointer;
+    
+    border-radius: 50px;
+    
+    padding: .1vh .1vw;
+
+    background: rgba(255,255,255,.3);
+    color: white;
+}
+
+.todo-list-todos__empty-btn:hover {
+    background: rgba(255,255,255,.6);
+}
+
 completed {
     text-decoration: line-through;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 
