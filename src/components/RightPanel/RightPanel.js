@@ -36,13 +36,14 @@ var FontAwesome = require('react-fontawesome');
     geolocationSuccess(position) {
       var latitude  = position.coords.latitude;
       var longitude = position.coords.longitude;
-      alert(`lat ${latitude} long ${longitude}`)
+      
       let url = `https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`;
       fetch(url, {mode: 'cors'})
         .then(result => result.json())
         .then(data => {
+          let temp = data.main.temp * 1.8 + 32;
           this.setState({
-            temp: data.main.temp,
+            temp: temp,
             weatherDesc: data.weather[0].description,
             city: data.name,
             iconUrl: data.weather[0].icon,

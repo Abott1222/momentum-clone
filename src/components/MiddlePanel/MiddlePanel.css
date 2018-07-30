@@ -255,7 +255,7 @@
     }
 
     .focus {top:27vh;}
-    .quote {top:29vh !important;}
+    .quote {top:29.4vh !important;}
 }
 
 @media (max-height: 675px) and (min-height:641px) {

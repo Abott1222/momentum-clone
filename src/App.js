@@ -81,7 +81,7 @@ class App extends Component {
   //will update in LandingPage but LinksMenu wont update?
   //was putting props into state and thus the child's state didnt update -> no render
   addLink(name, url) {
-    //alert(`Got it... name:${name}... url:${url}`);
+    
     let newObj = {id:this.state.numLinks, name:name, url:url};
     this.setState( (prevState) => {
       return {
@@ -92,7 +92,7 @@ class App extends Component {
   }
 
   addTodo(todo) {
-    //alert(`Got it... name:${name}... url:${url}`);
+    
     let newObj = {id: this.state.numTodos, name:todo, completed:false};
     this.setState( (prevState) => {
       return {
@@ -158,9 +158,10 @@ class App extends Component {
     }
   }
 
+
+
   componentDidMount() {
     let url = 'https://pixabay.com/api/?key=9385886-d89ec14d25ef4a913e3bbe0cf&q=inspiration&image_type=photo&min_width=600&min_height=600&colors=brown';
-    
     fetch(url)
       .then(result => result.json())
       .then(data => {
